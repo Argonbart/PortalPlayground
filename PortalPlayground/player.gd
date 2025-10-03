@@ -10,8 +10,12 @@ var pitch: float = 0.0 # Up/down
 @export var pivot: Node3D
 @export var cam: Camera3D
 
+var ported: bool = false
+
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -26,7 +30,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Release the mouse when pressing ESC
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+
 func _physics_process(_delta: float) -> void:
+	
 	var input_dir = Vector3.ZERO
 
 	if Input.is_action_pressed("move_forward"):

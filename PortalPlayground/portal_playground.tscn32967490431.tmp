@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxgbtmkdlq7jq"]
+[gd_scene load_steps=16 format=3 uid="uid://bxgbtmkdlq7jq"]
 
 [ext_resource type="Environment" uid="uid://bca118dnwb0ym" path="res://world_environment.tres" id="1_6hmyl"]
 [ext_resource type="Texture2D" uid="uid://m2x0bgmgtgq8" path="res://assets/ground_texture.png" id="2_o8bpm"]
@@ -20,11 +20,8 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_vgspm"]
 material = SubResource("StandardMaterial3D_vgspm")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqoqw"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_6hmyl"]
-material = SubResource("StandardMaterial3D_mqoqw")
-size = Vector3(5.6, 3.6, 0.001)
+[sub_resource type="PlaneMesh" id="PlaneMesh_d71dv"]
+size = Vector2(6, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hmyl"]
 albedo_color = Color(0, 0, 0, 1)
@@ -32,8 +29,8 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5wd7"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_6hmyl"]
-size = Vector3(5.6, 3.6, 0.001)
+[sub_resource type="BoxShape3D" id="BoxShape3D_vgspm"]
+size = Vector3(5.6, 0.002, 3.8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytrao"]
 albedo_color = Color(0, 0, 0.8980392, 1)
@@ -43,9 +40,6 @@ uv1_triplanar = true
 [sub_resource type="PlaneMesh" id="PlaneMesh_atsf6"]
 material = SubResource("StandardMaterial3D_ytrao")
 size = Vector2(10, 20)
-
-[sub_resource type="BoxMesh" id="BoxMesh_a5wd7"]
-size = Vector3(5.6, 3.6, 0.001)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qcswp"]
 radius = 0.106933594
@@ -92,9 +86,9 @@ layers = 4
 mesh = SubResource("BoxMesh_vgspm")
 
 [node name="RedPortal" type="MeshInstance3D" parent="RedSide" node_paths=PackedStringArray("player_cam", "target_portal")]
-transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -5, 1.8, -4)
+transform = Transform3D(1, 0, 0, 0, 0, -1.0000001, 0, 1.0000001, 0, -6, 1.8, -4)
 layers = 524288
-mesh = SubResource("BoxMesh_6hmyl")
+mesh = SubResource("PlaneMesh_d71dv")
 skeleton = NodePath("../..")
 script = ExtResource("3_la1tx")
 player_cam = NodePath("../../Player/CameraPivot/PlayerCamera")
@@ -102,7 +96,6 @@ target_portal = NodePath("../../BlueSide/BluePortal")
 
 [node name="RedPortalViewport" type="SubViewport" parent="RedSide/RedPortal"]
 size = Vector2i(1920, 1080)
-render_target_update_mode = 4
 
 [node name="RedPortalCamera" type="Camera3D" parent="RedSide/RedPortal/RedPortalViewport"]
 cull_mask = 524285
@@ -111,19 +104,20 @@ environment = ExtResource("1_6hmyl")
 [node name="PortalBorder" type="CSGCombiner3D" parent="RedSide/RedPortal"]
 
 [node name="Outer" type="CSGBox3D" parent="RedSide/RedPortal/PortalBorder"]
-size = Vector3(6, 4, 0.2)
+size = Vector3(6, 0.2, 4)
 material = SubResource("StandardMaterial3D_6hmyl")
 
 [node name="Inner" type="CSGBox3D" parent="RedSide/RedPortal/PortalBorder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 operation = 2
-size = Vector3(5.6, 3.8, 0.2)
+size = Vector3(5.6, 0.2, 3.8)
 material = SubResource("StandardMaterial3D_a5wd7")
 
-[node name="PortalArea" type="Area3D" parent="RedSide/RedPortal"]
+[node name="CollisionArea" type="Area3D" parent="RedSide/RedPortal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 
-[node name="PortalCollision" type="CollisionShape3D" parent="RedSide/RedPortal/PortalArea"]
-shape = SubResource("BoxShape3D_6hmyl")
+[node name="CollisionShape" type="CollisionShape3D" parent="RedSide/RedPortal/CollisionArea"]
+shape = SubResource("BoxShape3D_vgspm")
 
 [node name="BlueSide" type="Node3D" parent="."]
 
@@ -160,9 +154,9 @@ layers = 4
 mesh = SubResource("BoxMesh_vgspm")
 
 [node name="BluePortal" type="MeshInstance3D" parent="BlueSide" node_paths=PackedStringArray("player_cam", "target_portal")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 5, 1.8, -4)
+transform = Transform3D(0.99999994, 0, 0, 0, -4.3711392e-08, -1.0000001, 0, 1.0000001, -4.3711392e-08, 5, 1.8, -4)
 layers = 524288
-mesh = SubResource("BoxMesh_a5wd7")
+mesh = SubResource("PlaneMesh_d71dv")
 skeleton = NodePath("../..")
 script = ExtResource("3_la1tx")
 player_cam = NodePath("../../Player/CameraPivot/PlayerCamera")
@@ -170,7 +164,6 @@ target_portal = NodePath("../../RedSide/RedPortal")
 
 [node name="BluePortalViewport" type="SubViewport" parent="BlueSide/BluePortal"]
 size = Vector2i(1920, 1080)
-render_target_update_mode = 4
 
 [node name="BluePortalCamera" type="Camera3D" parent="BlueSide/BluePortal/BluePortalViewport"]
 cull_mask = 524285
@@ -178,19 +171,14 @@ cull_mask = 524285
 [node name="PortalBorder" type="CSGCombiner3D" parent="BlueSide/BluePortal"]
 
 [node name="Outer" type="CSGBox3D" parent="BlueSide/BluePortal/PortalBorder"]
-size = Vector3(6, 4, 0.2)
+size = Vector3(6, 0.2, 4)
 material = SubResource("StandardMaterial3D_6hmyl")
 
 [node name="Inner" type="CSGBox3D" parent="BlueSide/BluePortal/PortalBorder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 operation = 2
-size = Vector3(5.6, 3.8, 0.2)
+size = Vector3(5.6, 0.2, 3.8)
 material = SubResource("StandardMaterial3D_a5wd7")
-
-[node name="PortalArea" type="Area3D" parent="BlueSide/BluePortal"]
-
-[node name="PortalCollision" type="CollisionShape3D" parent="BlueSide/BluePortal/PortalArea"]
-shape = SubResource("BoxShape3D_6hmyl")
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("pivot", "cam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -205,12 +193,5 @@ shape = SubResource("CapsuleShape3D_qcswp")
 
 [node name="PlayerCamera" type="Camera3D" parent="Player/CameraPivot"]
 current = true
-near = 0.001
 
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -4)
-
-[connection signal="body_entered" from="RedSide/RedPortal/PortalArea" to="RedSide/RedPortal" method="_on_portal_area_body_entered"]
-[connection signal="body_exited" from="RedSide/RedPortal/PortalArea" to="RedSide/RedPortal" method="_on_portal_area_body_exited"]
-[connection signal="body_entered" from="BlueSide/BluePortal/PortalArea" to="BlueSide/BluePortal" method="_on_portal_area_body_entered"]
-[connection signal="body_exited" from="BlueSide/BluePortal/PortalArea" to="BlueSide/BluePortal" method="_on_portal_area_body_exited"]
+[connection signal="body_entered" from="RedSide/RedPortal/CollisionArea" to="RedSide/RedPortal" method="_on_collision_area_body_entered"]
