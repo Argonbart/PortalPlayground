@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://bxgbtmkdlq7jq"]
 
-[ext_resource type="Environment" uid="uid://bca118dnwb0ym" path="res://world_environment.tres" id="1_6hmyl"]
-[ext_resource type="Texture2D" uid="uid://m2x0bgmgtgq8" path="res://assets/ground_texture.png" id="2_o8bpm"]
-[ext_resource type="Script" uid="uid://bn4pdxl6grdng" path="res://portal.gd" id="3_la1tx"]
-[ext_resource type="Script" uid="uid://cugp05iulcdq5" path="res://player.gd" id="5_oaunt"]
+[ext_resource type="Environment" uid="uid://bca118dnwb0ym" path="res://scenes/portal_testing/world_environment.tres" id="1_6hmyl"]
+[ext_resource type="Texture2D" uid="uid://m2x0bgmgtgq8" path="res://assets/textures/ground_texture.png" id="2_o8bpm"]
+[ext_resource type="Script" uid="uid://bn4pdxl6grdng" path="res://scenes/portal_testing/portal.gd" id="3_la1tx"]
+[ext_resource type="Script" uid="uid://cugp05iulcdq5" path="res://scenes/portal_testing/player.gd" id="5_oaunt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d71dv"]
 albedo_color = Color(1, 0, 0.1882353, 1)

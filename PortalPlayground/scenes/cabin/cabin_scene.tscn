@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqcmyjx5jvfdg"]
+
+[ext_resource type="PackedScene" uid="uid://b58ofnqbugjuk" path="res://assets/blender/cabin.glb" id="1_6iser"]
+[ext_resource type="Material" uid="uid://c0hf7lfoi3vva" path="res://assets/materials/wood.tres" id="2_40iuh"]
+
+[node name="CabinScene" type="Node3D"]
+
+[node name="Cabin" parent="." instance=ExtResource("1_6iser")]
+
+[node name="Cylinder" parent="Cabin" index="0"]
+material_override = ExtResource("2_40iuh")
+
+[node name="Cylinder_001" parent="Cabin" index="1"]
+visible = false
+
+[node name="Cylinder_002" parent="Cabin" index="2"]
+visible = false
+
+[editable path="Cabin"]
