@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf5teot34fgo2"]
+
+[ext_resource type="Script" uid="uid://cugp05iulcdq5" path="res://scripts/player.gd" id="1_bkaf0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qcswp"]
+radius = 0.106933594
+height = 0.35162354
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pivot", "cam")]
+script = ExtResource("1_bkaf0")
+pivot = NodePath("CameraPivot")
+cam = NodePath("CameraPivot/PlayerCamera")
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_qcswp")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="PlayerCamera" type="Camera3D" parent="CameraPivot"]
+current = true
+near = 0.001

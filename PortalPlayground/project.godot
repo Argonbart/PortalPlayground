@@ -11,14 +11,23 @@ config_version=5
 [application]
 
 config/name="PortalPlayground"
-run/main_scene="uid://bxgbtmkdlq7jq"
+run/main_scene="uid://bqcmyjx5jvfdg"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://assets/icon.svg"
+
+[autoload]
+
+Global="*res://global.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=4
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
 
 [input]
 

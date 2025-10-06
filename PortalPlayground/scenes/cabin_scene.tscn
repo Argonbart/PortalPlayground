@@ -1,0 +1,302 @@
+[gd_scene load_steps=34 format=3 uid="uid://bqcmyjx5jvfdg"]
+
+[ext_resource type="Environment" uid="uid://bca118dnwb0ym" path="res://assets/other/world_environment.tres" id="1_4jiod"]
+[ext_resource type="PackedScene" uid="uid://b58ofnqbugjuk" path="res://assets/glb/cabin.glb" id="1_v1784"]
+[ext_resource type="Material" uid="uid://c0hf7lfoi3vva" path="res://assets/materials/wood.tres" id="2_ugx65"]
+[ext_resource type="Material" uid="uid://dbsx8tqxmt8fj" path="res://assets/materials/grass.tres" id="3_j76md"]
+[ext_resource type="Script" uid="uid://maawoj2npnjq" path="res://addons/proton_scatter/src/scatter.gd" id="4_4jiod"]
+[ext_resource type="BoxMesh" uid="uid://c4bk0nbjug44n" path="res://door_mesh.tres" id="4_j76md"]
+[ext_resource type="Script" uid="uid://cqket61cw40n4" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="5_jbrjp"]
+[ext_resource type="Script" uid="uid://b35qv2d1d2akj" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="6_r66pk"]
+[ext_resource type="Script" uid="uid://hs2scl5hm7wp" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="7_va5ni"]
+[ext_resource type="Script" uid="uid://dw1leokf01rcv" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="8_y2c27"]
+[ext_resource type="Script" uid="uid://c2pbbh7cpfd0t" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="9_amqd6"]
+[ext_resource type="Script" uid="uid://cw1ji8cslevcx" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="10_ccmac"]
+[ext_resource type="Script" uid="uid://ci1sdqtpcoowq" path="res://addons/proton_scatter/src/scatter_item.gd" id="11_u7mus"]
+[ext_resource type="Script" uid="uid://soykxamw4kqp" path="res://addons/proton_scatter/src/scatter_shape.gd" id="12_ckqb7"]
+[ext_resource type="Script" uid="uid://d1em86gu1asr" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="13_yojcg"]
+[ext_resource type="PackedScene" uid="uid://bf5teot34fgo2" path="res://scenes/player.tscn" id="14_465v4"]
+[ext_resource type="PackedScene" uid="uid://c75xfety2hsuj" path="res://scenes/portal.tscn" id="15_ugx65"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jiod"]
+size = Vector3(4.661682, 7.998169, 12.646317)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbrjp"]
+size = Vector3(4.661682, 7.998169, 10.355873)
+
+[sub_resource type="Resource" id="Resource_4jiod"]
+script = ExtResource("7_va5ni")
+amount = 300
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_jbrjp"]
+script = ExtResource("8_y2c27")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(5, 360, 5)
+scale = Vector3(0.1, 0.1, 0.1)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_r66pk"]
+script = ExtResource("9_amqd6")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_va5ni"]
+script = ExtResource("10_ccmac")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_y2c27"]
+script = ExtResource("5_jbrjp")
+stack = Array[ExtResource("6_r66pk")]([SubResource("Resource_4jiod"), SubResource("Resource_jbrjp"), SubResource("Resource_r66pk"), SubResource("Resource_va5ni")])
+
+[sub_resource type="Resource" id="Resource_d07nt"]
+script = ExtResource("13_yojcg")
+size = Vector3(30, 1, 15.7949295)
+metadata/_custom_type_script = "uid://d1em86gu1asr"
+
+[sub_resource type="Resource" id="Resource_v1784"]
+script = ExtResource("13_yojcg")
+size = Vector3(7.163134, 1, 7.355343)
+
+[sub_resource type="Resource" id="Resource_amqd6"]
+script = ExtResource("7_va5ni")
+amount = 400
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_ccmac"]
+script = ExtResource("8_y2c27")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(5, 360, 5)
+scale = Vector3(0.1, 0.1, 0.1)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_u7mus"]
+script = ExtResource("9_amqd6")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_ckqb7"]
+script = ExtResource("10_ccmac")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_03vq0"]
+script = ExtResource("5_jbrjp")
+stack = Array[ExtResource("6_r66pk")]([SubResource("Resource_amqd6"), SubResource("Resource_ccmac"), SubResource("Resource_u7mus"), SubResource("Resource_ckqb7")])
+
+[sub_resource type="Resource" id="Resource_yojcg"]
+script = ExtResource("13_yojcg")
+size = Vector3(30, 1, 15.852701)
+
+[sub_resource type="Resource" id="Resource_465v4"]
+script = ExtResource("13_yojcg")
+size = Vector3(7.163134, 1, 1.1049837)
+
+[node name="CabinScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_4jiod")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("14_465v4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.9301844)
+
+[node name="Cabin" type="Node3D" parent="."]
+
+[node name="CabinAsset" parent="Cabin" instance=ExtResource("1_v1784")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Cylinder" parent="Cabin/CabinAsset" index="0"]
+layers = 4
+material_override = ExtResource("2_ugx65")
+
+[node name="Cylinder_001" parent="Cabin/CabinAsset" index="1"]
+material_override = ExtResource("2_ugx65")
+
+[node name="Cylinder_002" parent="Cabin/CabinAsset" index="2"]
+material_override = ExtResource("2_ugx65")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cabin/CabinAsset"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cabin/CabinAsset/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.542328, 3.4990845, 6.020897)
+shape = SubResource("BoxShape3D_4jiod")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Cabin/CabinAsset"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.134334, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cabin/CabinAsset/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.542328, 3.4990845, 6.020897)
+shape = SubResource("BoxShape3D_4jiod")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Cabin/CabinAsset"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9594483, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cabin/CabinAsset/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.542328, 3.4990845, 7.1661186)
+shape = SubResource("BoxShape3D_jbrjp")
+
+[node name="CabinEnter" parent="Cabin" node_paths=PackedStringArray("target_portal") instance=ExtResource("15_ugx65")]
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1.0000001, 0, 8.742278e-08, 0, -1.0000001, 0, 1.5915098, 0)
+mesh = ExtResource("4_j76md")
+skeleton = NodePath("../..")
+target_portal = NodePath("../../CabinExit")
+
+[node name="BehindCabin" type="Node3D" parent="Cabin"]
+script = ExtResource("4_4jiod")
+modifier_stack = SubResource("Resource_y2c27")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://maawoj2npnjq"
+
+[node name="Bushes" type="Node3D" parent="Cabin/BehindCabin"]
+script = ExtResource("11_u7mus")
+proportion = 70
+visibility_layers = 4
+path = "uid://b8abs8me7ckgo"
+
+[node name="Rocks" type="Node3D" parent="Cabin/BehindCabin"]
+script = ExtResource("11_u7mus")
+proportion = 10
+visibility_layers = 4
+path = "uid://bltmr2xgs8nq1"
+
+[node name="Trees" type="Node3D" parent="Cabin/BehindCabin"]
+script = ExtResource("11_u7mus")
+proportion = 10
+source_scale_multiplier = 3.0
+visibility_layers = 4
+path = "uid://caqxfqurbp3ku"
+
+[node name="ShapeAdd" type="Node3D" parent="Cabin/BehindCabin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.097124)
+script = ExtResource("12_ckqb7")
+shape = SubResource("Resource_d07nt")
+
+[node name="ShapeRemove" type="Node3D" parent="Cabin/BehindCabin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.4027972)
+script = ExtResource("12_ckqb7")
+negative = true
+shape = SubResource("Resource_v1784")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = ExtResource("3_j76md")
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="FrontCabin" type="Node3D" parent="."]
+script = ExtResource("4_4jiod")
+modifier_stack = SubResource("Resource_03vq0")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://maawoj2npnjq"
+
+[node name="Bushes" type="Node3D" parent="FrontCabin"]
+script = ExtResource("11_u7mus")
+proportion = 70
+path = "uid://b8abs8me7ckgo"
+
+[node name="Rocks" type="Node3D" parent="FrontCabin"]
+script = ExtResource("11_u7mus")
+proportion = 10
+path = "uid://bltmr2xgs8nq1"
+
+[node name="Trees" type="Node3D" parent="FrontCabin"]
+script = ExtResource("11_u7mus")
+proportion = 10
+source_scale_multiplier = 3.0
+path = "uid://caqxfqurbp3ku"
+
+[node name="ShapeAdd" type="Node3D" parent="FrontCabin"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 2.3449809e-07, 0, -7.8684564)
+script = ExtResource("12_ckqb7")
+shape = SubResource("Resource_yojcg")
+
+[node name="ShapeRemove" type="Node3D" parent="FrontCabin"]
+script = ExtResource("12_ckqb7")
+negative = true
+shape = SubResource("Resource_465v4")
+
+[node name="CabinExit" parent="." node_paths=PackedStringArray("target_portal") instance=ExtResource("15_ugx65")]
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1.0000001, 0, 8.742278e-08, 0, -1.0000001, 72.011, 2, 0.7069349)
+mesh = ExtResource("4_j76md")
+target_portal = NodePath("../Cabin/CabinEnter")
+
+[node name="PortalCamera" parent="CabinExit/PortalViewport" index="0"]
+cull_mask = 524283
+
+[node name="MeshInstance3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.551075, 20.527893, 43.0972)
+size = Vector3(4.132324, 42.055786, 183.61884)
+
+[node name="MeshInstance3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25.058653, 20.527893, -17.41973)
+size = Vector3(4.132324, 42.055786, 100.39938)
+
+[node name="MeshInstance3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -26.282894, 20.527893, 17.96213)
+size = Vector3(4.132324, 42.055786, 97.9509)
+
+[node name="MeshInstance3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.244469, 20.527893, 43.0972)
+size = Vector3(4.132324, 42.055786, 183.61884)
+
+[node name="MeshInstance3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.67273, 72.17997, 43.0972)
+size = Vector3(98.19165, 42.055786, 183.61884)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="MeshInstance3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.531, 25, 25)
+size = Vector3(50, 50, 50)
+material = ExtResource("2_ugx65")
+
+[node name="MeshInstance3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.531, 25, 23.121582)
+layers = 2
+operation = 2
+size = Vector3(49, 49, 52.756836)
+material = ExtResource("2_ugx65")
+
+[node name="MeshInstance3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.531, 25, 0.2809504)
+layers = 2
+use_collision = true
+size = Vector3(50, 50, 0.5619014)
+material = ExtResource("2_ugx65")
+
+[node name="MeshInstance3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.31129, 2.0185547, 0.42734087)
+layers = 2
+use_collision = true
+size = Vector3(8.065857, 4.0371094, 0.5619014)
+material = ExtResource("2_ugx65")
+
+[node name="MeshInstance3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.66913, 2.0185547, 0.42734087)
+layers = 2
+use_collision = true
+size = Vector3(8.065857, 4.0371094, 0.5619014)
+material = ExtResource("2_ugx65")
+
+[node name="DirectionalLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.76665, 8.608055, 15.655766)
+light_energy = 16.0
+omni_range = 4096.0
+
+[editable path="Cabin/CabinAsset"]
+[editable path="Cabin/CabinEnter"]
+[editable path="CabinExit"]

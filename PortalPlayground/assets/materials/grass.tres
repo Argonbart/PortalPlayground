@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dbsx8tqxmt8fj"]
+
+[ext_resource type="Texture2D" uid="uid://ddsl42x68bhc2" path="res://assets/forrest_ground_01_1k/textures/forrest_ground_01_diff_1k.jpg" id="1_vgjhr"]
+[ext_resource type="Texture2D" uid="uid://c63aly1gdvkq3" path="res://assets/forrest_ground_01_1k/textures/forrest_ground_01_rough_1k.exr" id="2_gjj3c"]
+
+[resource]
+albedo_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
+albedo_texture = ExtResource("1_vgjhr")
+roughness_texture = ExtResource("2_gjj3c")
+roughness_texture_channel = 4
+normal_enabled = true
+uv1_triplanar = true
